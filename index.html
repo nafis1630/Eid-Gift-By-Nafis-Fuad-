@@ -3,245 +3,290 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eid Premium Experience</title>
+<title>God Level Eid Experience</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Hind Siliguri', sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Hind Siliguri',sans-serif;}
 
 body{
-height:100vh;
-background: radial-gradient(circle at top, #111, #000);
-color:#fff;
+background:black;
 display:flex;
 justify-content:center;
 align-items:center;
+height:100vh;
+overflow:hidden;
+color:white;
+}
+
+/* PHONE */
+.phone{
+width:360px;
+height:720px;
+border-radius:40px;
+padding:10px;
+background:#0a0a0a;
+box-shadow:0 0 80px rgba(255,215,0,0.25);
+}
+
+.screen{
+width:100%;
+height:100%;
+border-radius:30px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(25px);
+position:relative;
 overflow:hidden;
 }
 
-/* Glass container */
-.container{
-width:95%;
-max-width:420px;
-height:90vh;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(20px);
-border:1px solid rgba(255,215,0,0.2);
-border-radius:25px;
-box-shadow:0 0 40px rgba(255,215,0,0.2);
-padding:20px;
-text-align:center;
-position:relative;
+/* stars */
+.star{
+position:absolute;
+width:2px;height:2px;
+background:gold;
+animation:twinkle 2s infinite alternate;
+}
+@keyframes twinkle{
+from{opacity:.2;}
+to{opacity:1;}
 }
 
-/* Glow text */
+.center{
+position:absolute;
+top:50%;left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+width:90%;
+animation:fadeIn 1s ease;
+}
+@keyframes fadeIn{
+from{opacity:0;transform:translate(-50%,-40%);}
+to{opacity:1;transform:translate(-50%,-50%);}
+}
+
+.hidden{display:none}
+
 .glow{
 color:#FFD700;
-text-shadow:0 0 10px gold,0 0 20px gold;
+text-shadow:0 0 15px gold,0 0 40px rgba(255,215,0,0.5);
 }
 
-/* Button */
 button{
-margin-top:20px;
 padding:12px 25px;
 border:none;
 border-radius:30px;
 background:linear-gradient(45deg,#FFD700,#caa400);
-color:#000;
+color:black;
 font-weight:bold;
-cursor:pointer;
-transition:0.3s;
+margin-top:20px;
+transition:.3s;
 }
-
 button:hover{
 transform:scale(1.1);
 box-shadow:0 0 20px gold;
 }
 
-/* Gift box */
-.gift{
-font-size:60px;
-animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-0%{transform:scale(1);}
-50%{transform:scale(1.2);}
-100%{transform:scale(1);}
-}
-
-/* hidden */
-.hidden{
-display:none;
-}
-
-/* moon */
 .moon{
-font-size:60px;
-animation:float 4s infinite;
+font-size:70px;
+animation:float 4s infinite ease-in-out;
 }
-
 @keyframes float{
-0%{transform:translateY(0);}
-50%{transform:translateY(-10px);}
-100%{transform:translateY(0);}
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-25px);}
 }
 
-/* lantern */
-.lantern{
-font-size:60px;
-animation:flicker 1s infinite;
+/* 🔥 FULL SCREEN FINAL */
+#finalFull{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
 }
 
-@keyframes flicker{
-0%,100%{opacity:1;}
-50%{opacity:0.7;}
-}
-
-/* typing effect */
-.typing{
-border-right:2px solid gold;
-white-space:nowrap;
-overflow:hidden;
-}
-
-/* fireworks canvas */
-canvas{
+#finalFull canvas{
 position:absolute;
 top:0;
 left:0;
 width:100%;
 height:100%;
-z-index:-1;
 }
 
-/* watermark */
+.finalText{
+color:#FFD700;
+font-size:28px;
+text-align:center;
+padding:20px;
+text-shadow:0 0 25px gold,0 0 60px gold;
+animation:zoomGlow 2s ease forwards;
+z-index:2;
+}
+
+@keyframes zoomGlow{
+0%{opacity:0;transform:scale(0.5);}
+100%{opacity:1;transform:scale(1);}
+}
+
 .watermark{
 position:absolute;
 bottom:10px;
-right:15px;
+right:10px;
 font-size:10px;
-opacity:0.5;
+opacity:.6;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="phone">
+<div class="screen">
 
-<!-- STEP 0 -->
-<div id="step0">
-<div class="gift">🎁</div>
-<h2 class="glow">তোমার জন্য একটি সারপ্রাইজ!</h2>
-<button onclick="nextStep(1)">সারপ্রাইজটি খুলুন</button>
+<div id="stars"></div>
+
+<div id="step0" class="center">
+<h3 class="glow">তোমার নাম লিখো ✨</h3>
+<input id="name" placeholder="তোমার নাম..." style="padding:10px;border-radius:20px;border:none;width:80%;margin-top:10px;">
+<button onclick="start()">✨ শুরু করো</button>
 </div>
 
-<!-- STEP 1 -->
-<div id="step1" class="hidden">
-<div class="moon">🌙✨</div>
-<h3 id="typingText" class="glow"></h3>
-<button onclick="nextStep(2)">পরবর্তী</button>
+<div id="step1" class="center hidden">
+<div class="moon">🌙</div>
+<h3 id="msg1" class="glow"></h3>
+<button onclick="next(2)">👉 এগিয়ে যাও</button>
 </div>
 
-<!-- STEP 2 -->
-<div id="step2" class="hidden">
-<div class="lantern">🏮</div>
-<p class="glow">
-তোমার এবং তোমার পরিবারের সবার জীবন আনন্দ, শান্তি ও ভালোবাসায় ভরে উঠুক।  
-তোমাকে জানাই আন্তরিক ঈদ মোবারক!
-</p>
-<button onclick="nextStep(3)">শেষ চমক</button>
+<div id="step2" class="center hidden">
+<h3 id="msg2" class="glow"></h3>
+<button onclick="nextFinal()">🎁 শেষ উপহার</button>
 </div>
 
-<!-- STEP 3 -->
-<div id="step3" class="hidden">
+<div class="watermark">Crafted by MD. NAFIS FUAD</div>
+
+</div>
+</div>
+
+<!-- 🔥 FULL SCREEN FINAL -->
+<div id="finalFull">
 <canvas id="fireworks"></canvas>
-<h1 class="glow">🌙✨ শুভ ঈদ-উল-ফিতর ✨🌙</h1>
+<h1 class="finalText">পবিত্র ঈদু-উল-ফিতরের শুভেচ্ছা</h1>
 </div>
 
-<div class="watermark">
-Crafted by MD. NAFIS FUAD
-</div>
-
-</div>
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_6c0a7b3c54.mp3">
+</audio>
 
 <script>
 
-// step control
-function nextStep(step){
-document.querySelectorAll(".container > div").forEach(el=>el.classList.add("hidden"));
-document.getElementById("step"+step).classList.remove("hidden");
-
-if(step===1){
-typeText("ঈদের চাঁদ উঠেছে আকাশে!");
+// stars
+for(let i=0;i<100;i++){
+let s=document.createElement("div");
+s.className="star";
+s.style.top=Math.random()*100+"%";
+s.style.left=Math.random()*100+"%";
+document.getElementById("stars").appendChild(s);
 }
-if(step===3){
+
+function start(){
+let name=document.getElementById("name").value || "তুমি";
+
+document.getElementById("step0").classList.add("hidden");
+document.getElementById("step1").classList.remove("hidden");
+
+msg1.innerText = name + ", এই পবিত্র ঈদের আলো তোমার জীবনে বয়ে আনুক অফুরন্ত সুখ, শান্তি আর ভালোবাসা ✨";
+msg2.innerText = "তোমার প্রতিটি দিন হোক আনন্দময়, প্রতিটি মুহূর্ত ভরে উঠুক হাসিতে। ঈদ তোমার জীবনে নতুন আশার সূচনা করুক 🌙💫";
+
+document.getElementById("music").play().catch(()=>{});
+}
+
+function next(step){
+document.querySelectorAll(".center").forEach(e=>e.classList.add("hidden"));
+document.getElementById("step"+step).classList.remove("hidden");
+}
+
+// 🔥 FINAL SHOW
+function nextFinal(){
+document.getElementById("finalFull").style.display="flex";
 startFireworks();
 }
-}
 
-// typing effect
-function typeText(text){
-let i=0;
-let el=document.getElementById("typingText");
-el.innerHTML="";
-let interval=setInterval(()=>{
-el.innerHTML+=text[i];
-i++;
-if(i>=text.length) clearInterval(interval);
-},80);
-}
-
-// fireworks
+// 🎆 ULTRA FIREWORK
 function startFireworks(){
-const canvas=document.getElementById("fireworks");
-const ctx=canvas.getContext("2d");
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
 
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+function resize(){
+canvas.width = window.innerWidth * devicePixelRatio;
+canvas.height = window.innerHeight * devicePixelRatio;
+ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+}
+resize();
+window.addEventListener("resize", resize);
 
 let particles=[];
 
-function createFirework(){
-let x=Math.random()*canvas.width;
-let y=Math.random()*canvas.height/2;
-for(let i=0;i<50;i++){
+function explode(){
+let x=Math.random()*window.innerWidth;
+let y=Math.random()*window.innerHeight/2;
+
+const colors=["#FFD700","#FFA500","#FFFFFF","#FFCC33","#FFF5B8"];
+
+for(let i=0;i<300;i++){
+let angle=Math.random()*Math.PI*2;
+let speed=Math.random()*8;
+
 particles.push({
-x:x,
-y:y,
-dx:(Math.random()-0.5)*5,
-dy:(Math.random()-0.5)*5,
-life:100
+x,y,
+vx:Math.cos(angle)*speed,
+vy:Math.sin(angle)*speed,
+alpha:1,
+decay:0.008+Math.random()*0.01,
+size:2+Math.random()*3,
+color:colors[Math.floor(Math.random()*colors.length)]
 });
 }
 }
 
 function animate(){
-ctx.fillStyle="rgba(0,0,0,0.2)";
+ctx.fillStyle="rgba(0,0,0,0.15)";
 ctx.fillRect(0,0,canvas.width,canvas.height);
 
-particles.forEach((p,index)=>{
-p.x+=p.dx;
-p.y+=p.dy;
-p.life--;
+particles.forEach((p,i)=>{
+p.x+=p.vx;
+p.y+=p.vy;
+p.vy+=0.05;
+p.alpha-=p.decay;
 
-ctx.fillStyle="gold";
-ctx.fillRect(p.x,p.y,2,2);
+ctx.globalAlpha=p.alpha;
+ctx.shadowBlur=20;
+ctx.shadowColor=p.color;
 
-if(p.life<=0) particles.splice(index,1);
+ctx.fillStyle=p.color;
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+ctx.fill();
+
+if(p.alpha<=0) particles.splice(i,1);
 });
+
+ctx.globalAlpha=1;
+ctx.shadowBlur=0;
 
 requestAnimationFrame(animate);
 }
 
-setInterval(createFirework,800);
+setInterval(()=>{
+explode();
+if(Math.random()>0.5) explode();
+},600);
+
 animate();
 }
 
