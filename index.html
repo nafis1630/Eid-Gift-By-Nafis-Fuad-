@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eid Premium Experience</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Hind Siliguri', sans-serif;
+}
+
+body{
+height:100vh;
+background: radial-gradient(circle at top, #111, #000);
+color:#fff;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+}
+
+/* Glass container */
+.container{
+width:95%;
+max-width:420px;
+height:90vh;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,215,0,0.2);
+border-radius:25px;
+box-shadow:0 0 40px rgba(255,215,0,0.2);
+padding:20px;
+text-align:center;
+position:relative;
+}
+
+/* Glow text */
+.glow{
+color:#FFD700;
+text-shadow:0 0 10px gold,0 0 20px gold;
+}
+
+/* Button */
+button{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#FFD700,#caa400);
+color:#000;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+box-shadow:0 0 20px gold;
+}
+
+/* Gift box */
+.gift{
+font-size:60px;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.2);}
+100%{transform:scale(1);}
+}
+
+/* hidden */
+.hidden{
+display:none;
+}
+
+/* moon */
+.moon{
+font-size:60px;
+animation:float 3s infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0);}
+}
+
+/* lantern */
+.lantern{
+font-size:60px;
+animation:flicker 1s infinite;
+}
+
+@keyframes flicker{
+0%,100%{opacity:1;}
+50%{opacity:0.7;}
+}
+
+/* typing effect */
+.typing{
+border-right:2px solid gold;
+white-space:nowrap;
+overflow:hidden;
+}
+
+/* fireworks canvas */
+canvas{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
+/* watermark */
+.watermark{
+position:absolute;
+bottom:10px;
+right:15px;
+font-size:10px;
+opacity:0.5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- STEP 0 -->
+<div id="step0">
+<div class="gift">🎁</div>
+<h2 class="glow">তোমার জন্য একটি সারপ্রাইজ!</h2>
+<button onclick="nextStep(1)">সারপ্রাইজটি খুলুন</button>
+</div>
+
+<!-- STEP 1 -->
+<div id="step1" class="hidden">
+<div class="moon">🌙✨</div>
+<h3 id="typingText" class="glow"></h3>
+<button onclick="nextStep(2)">পরবর্তী</button>
+</div>
+
+<!-- STEP 2 -->
+<div id="step2" class="hidden">
+<div class="lantern">🏮</div>
+<p class="glow">
+তোমার এবং তোমার পরিবারের সবার জীবন আনন্দ, শান্তি ও ভালোবাসায় ভরে উঠুক।  
+তোমাকে জানাই আন্তরিক ঈদ মোবারক!
+</p>
+<button onclick="nextStep(3)">শেষ চমক</button>
+</div>
+
+<!-- STEP 3 -->
+<div id="step3" class="hidden">
+<canvas id="fireworks"></canvas>
+<h1 class="glow">🌙✨ শুভ ঈদ-উল-ফিতর ✨🌙</h1>
+</div>
+
+<div class="watermark">
+Crafted by MD. NAFIS FUAD
+</div>
+
+</div>
+
+<script>
+
+// step control
+function nextStep(step){
+document.querySelectorAll(".container > div").forEach(el=>el.classList.add("hidden"));
+document.getElementById("step"+step).classList.remove("hidden");
+
+if(step===1){
+typeText("ঈদের চাঁদ উঠেছে আকাশে!");
+}
+if(step===3){
+startFireworks();
+}
+}
+
+// typing effect
+function typeText(text){
+let i=0;
+let el=document.getElementById("typingText");
+el.innerHTML="";
+let interval=setInterval(()=>{
+el.innerHTML+=text[i];
+i++;
+if(i>=text.length) clearInterval(interval);
+},80);
+}
+
+// fireworks
+function startFireworks(){
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+function createFirework(){
+let x=Math.random()*canvas.width;
+let y=Math.random()*canvas.height/2;
+for(let i=0;i<50;i++){
+particles.push({
+x:x,
+y:y,
+dx:(Math.random()-0.5)*5,
+dy:(Math.random()-0.5)*5,
+life:100
+});
+}
+}
+
+function animate(){
+ctx.fillStyle="rgba(0,0,0,0.2)";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+particles.forEach((p,index)=>{
+p.x+=p.dx;
+p.y+=p.dy;
+p.life--;
+
+ctx.fillStyle="gold";
+ctx.fillRect(p.x,p.y,2,2);
+
+if(p.life<=0) particles.splice(index,1);
+});
+
+requestAnimationFrame(animate);
+}
+
+setInterval(createFirework,800);
+animate();
+}
+
+</script>
+
+</body>
+</html>
