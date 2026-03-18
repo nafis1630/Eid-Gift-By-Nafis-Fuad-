@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>God Level Eid Experience</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Hind Siliguri',sans-serif;}
+
+body{
+background: url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap') no-repeat center center fixed;
+background-size: cover;
+
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+color:white;
+}
+
+/* Dark overlay for better visibility */
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+z-index:-1;
+}
+
+/* PHONE */
+.phone{
+width:360px;
+height:720px;
+border-radius:40px;
+padding:10px;
+background:rgba(0,0,0,0.6);
+box-shadow:0 0 80px rgba(255,215,0,0.3);
+}
+
+.screen{
+width:100%;
+height:100%;
+border-radius:30px;
+background:rgba(0,0,0,0.4);
+backdrop-filter:blur(10px);
+position:relative;
+overflow:hidden;
+}
+
+/* 🎵 Music Button */
+#musicBtn{
+position:absolute;
+top:15px;
+right:15px;
+border-radius:50%;
+padding:10px 12px;
+font-size:16px;
+background:rgba(255,215,0,0.2);
+border:none;
+color:#FFD700;
+cursor:pointer;
+}
+
+/* stars */
+.star{
+position:absolute;
+width:2px;height:2px;
+background:gold;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:.2;}
+to{opacity:1;}
+}
+
+.center{
+position:absolute;
+top:50%;left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+width:90%;
+transition:0.5s;
+}
+
+.hidden{
+opacity:0;
+transform:translate(-50%,-30%) scale(0.9);
+pointer-events:none;
+}
+
+.glow{
+color:#FFD700;
+text-shadow:0 0 15px gold,0 0 40px rgba(255,215,0,0.6);
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#FFD700,#caa400);
+color:black;
+font-weight:bold;
+margin-top:20px;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+box-shadow:0 0 20px gold;
+}
+
+input{
+padding:10px;
+border-radius:20px;
+border:none;
+width:80%;
+margin-top:10px;
+text-align:center;
+}
+
+.shake{
+animation:shake .4s;
+}
+
+@keyframes shake{
+0%,100%{transform:translate(-50%,-50%)}
+25%{transform:translate(-55%,-50%)}
+75%{transform:translate(-45%,-50%)}
+}
+
+.moon{
+font-size:70px;
+animation:float 4s infinite ease-in-out;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-25px);}
+}
+
+/* FINAL (NO IMAGE HERE) */
+#finalFull{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+}
+
+#finalFull canvas{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+}
+
+.finalText{
+color:#FFD700;
+font-size:28px;
+text-align:center;
+padding:20px;
+text-shadow:0 0 25px gold,0 0 60px gold;
+animation:zoomGlow 2s ease forwards;
+z-index:2;
+}
+
+@keyframes zoomGlow{
+0%{opacity:0;transform:scale(0.5);}
+100%{opacity:1;transform:scale(1);}
+}
+
+.watermark{
+position:absolute;
+bottom:10px;
+right:10px;
+font-size:10px;
+opacity:.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="phone">
+<div class="screen">
+
+<button id="musicBtn" onclick="toggleMusic()">🎵</button>
+
+<div id="stars"></div>
+
+<div id="step0" class="center">
+<h3 class="glow">তোমার নাম লিখো ✨</h3>
+<input id="name" placeholder="তোমার নাম...">
+<button onclick="start()">✨ শুরু করো</button>
+</div>
+
+<div id="step1" class="center hidden">
+<div class="moon">🌙</div>
+<h3 id="msg1" class="glow"></h3>
+<button onclick="next(2)">👉 এগিয়ে যাও</button>
+</div>
+
+<div id="step2" class="center hidden">
+<h3 id="msg2" class="glow"></h3>
+<button onclick="nextFinal()">🎁 শেষ উপহার</button>
+</div>
+
+<div class="watermark">Crafted by MD. NAFIS FUAD</div>
+
+</div>
+</div>
+
+<div id="finalFull">
+<canvas id="fireworks"></canvas>
+<h1 class="finalText">পবিত্র ঈদু-উল-ফিতরের শুভেচ্ছা</h1>
+</div>
+
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/audio/2023/03/21/audio_5f3d7cba9c.mp3">
+</audio>
+
+<audio id="click">
+<source src="https://cdn.pixabay.com/audio/2022/03/10/audio_c6ccf3c89d.mp3">
+</audio>
+
+<script>
+
+// stars
+for(let i=0;i<120;i++){
+let s=document.createElement("div");
+s.className="star";
+s.style.top=Math.random()*100+"%";
+s.style.left=Math.random()*100+"%";
+document.getElementById("stars").appendChild(s);
+}
+
+function playClick(){
+document.getElementById("click").play();
+if(navigator.vibrate) navigator.vibrate(30);
+}
+
+let musicStarted = false;
+
+function startMusic(){
+let music = document.getElementById("music");
+music.volume = 0;
+music.play().then(()=>{
+musicStarted = true;
+fadeInMusic();
+});
+}
+
+function fadeInMusic(){
+let music = document.getElementById("music");
+let vol = 0;
+
+let fade = setInterval(()=>{
+if(vol < 0.5){
+vol += 0.02;
+music.volume = vol;
+}else{
+clearInterval(fade);
+}
+},100);
+}
+
+function toggleMusic(){
+let music = document.getElementById("music");
+
+if(!musicStarted){
+startMusic();
+return;
+}
+
+if(music.paused){
+music.play();
+}else{
+music.pause();
+}
+}
+
+function typeText(el, text, speed=30){
+el.innerHTML="";
+let i=0;
+function typing(){
+if(i<text.length){
+el.innerHTML += text.charAt(i);
+i++;
+setTimeout(typing,speed);
+}
+}
+typing();
+}
+
+function start(){
+playClick();
+
+let name=document.getElementById("name").value.trim();
+
+if(!name){
+let box=document.getElementById("step0");
+box.classList.add("shake");
+setTimeout(()=>box.classList.remove("shake"),400);
+return;
+}
+
+document.getElementById("step0").classList.add("hidden");
+document.getElementById("step1").classList.remove("hidden");
+
+typeText(msg1, `${name}, এই পবিত্র ঈদের আলো তোমার জীবনে বয়ে আনুক অফুরন্ত সুখ, শান্তি আর ভালোবাসা ✨`);
+typeText(msg2, `তোমার প্রতিটি দিন হোক আনন্দময়, প্রতিটি মুহূর্ত ভরে উঠুক হাসিতে। ঈদ তোমার জীবনে নতুন আশার সূচনা করুক 🌙💫`);
+
+startMusic();
+}
+
+function next(step){
+playClick();
+document.querySelectorAll(".center").forEach(e=>e.classList.add("hidden"));
+document.getElementById("step"+step).classList.remove("hidden");
+}
+
+function nextFinal(){
+playClick();
+document.getElementById("finalFull").style.display="flex";
+startFireworks();
+}
+
+function startFireworks(){
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+
+function resize(){
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+}
+resize();
+
+let particles=[];
+
+function explode(){
+let x=Math.random()*canvas.width;
+let y=Math.random()*canvas.height/2;
+
+for(let i=0;i<200;i++){
+let angle=Math.random()*Math.PI*2;
+let speed=Math.random()*6;
+
+particles.push({
+x,y,
+vx:Math.cos(angle)*speed,
+vy:Math.sin(angle)*speed,
+alpha:1,
+decay:0.01,
+color:`hsl(${Math.random()*60+40},100%,60%)`
+});
+}
+}
+
+function animate(){
+ctx.fillStyle="rgba(0,0,0,0.2)";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+particles.forEach((p,i)=>{
+p.x+=p.vx;
+p.y+=p.vy;
+p.vy+=0.03;
+p.alpha-=p.decay;
+
+ctx.globalAlpha=p.alpha;
+ctx.fillStyle=p.color;
+ctx.beginPath();
+ctx.arc(p.x,p.y,2,0,Math.PI*2);
+ctx.fill();
+
+if(p.alpha<=0) particles.splice(i,1);
+});
+
+ctx.globalAlpha=1;
+requestAnimationFrame(animate);
+}
+
+setInterval(explode,700);
+animate();
+}
+
+</script>
+
+</body>
+</html>
