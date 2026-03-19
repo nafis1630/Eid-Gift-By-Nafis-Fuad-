@@ -6,6 +6,7 @@
 <title>EID GIFT BY NAFIS FUAD</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <style>
 
@@ -55,7 +56,7 @@ background-size:cover;
 background-position:center;
 }
 
-/* 🌙 EID ENVIRONMENT BACKGROUND (Stars, Moons, Lanterns) */
+/* 🌙 EID ENVIRONMENT BACKGROUND */
 .eid-bg-icon {
 position: absolute;
 font-size: 14px;
@@ -166,7 +167,7 @@ background: rgba(0, 0, 0, 0.9);
 40%, 80%{transform:translate(-45%,-50%)}
 }
 
-/* 🎶 PREMIUM AUDIO WAVE VISUALIZER (NEW DYNAMIC ANIMATION) */
+/* 🎶 PREMIUM AUDIO WAVE VISUALIZER */
 .visualizer {
 position: absolute;
 bottom: 35px;
@@ -192,7 +193,6 @@ box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 animation: dynamicWave 1s infinite ease-in-out;
 }
 
-/* Asymmetrical & Random Delays for Realistic Equalizer Effect */
 .wb-1 { animation-delay: 0.0s; animation-duration: 0.7s; }
 .wb-2 { animation-delay: 0.2s; animation-duration: 0.9s; }
 .wb-3 { animation-delay: 0.4s; animation-duration: 0.6s; }
@@ -204,149 +204,9 @@ animation: dynamicWave 1s infinite ease-in-out;
 .wb-9 { animation-delay: 0.1s; animation-duration: 0.6s; }
 
 @keyframes dynamicWave {
-0%, 100% { 
-  transform: scaleY(0.4); 
-  opacity: 0.6; 
-  box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+0%, 100% { transform: scaleY(0.4); opacity: 0.6; box-shadow: 0 0 5px rgba(255, 215, 0, 0.3); }
+50% { transform: scaleY(3.2); opacity: 1; box-shadow: 0 0 20px #FFD700, 0 0 10px #fff; background: linear-gradient(180deg, #ffffff 0%, #ffae00 50%, #caa400 100%); }
 }
-50% { 
-  transform: scaleY(3.2); 
-  opacity: 1; 
-  box-shadow: 0 0 20px #FFD700, 0 0 10px #fff; 
-  background: linear-gradient(180deg, #ffffff 0%, #ffae00 50%, #caa400 100%);
-}
-}
-
-/* ------------------------------------------------ */
-/* 💌 NEW: 3D PREMIUM ISLAMIC PINK ENVELOPE STYLES  */
-/* ------------------------------------------------ */
-.envelope-wrapper {
-  position: relative;
-  width: 260px;
-  height: 160px;
-  margin: 0 auto;
-  cursor: pointer;
-  perspective: 1000px;
-  -webkit-tap-highlight-color: transparent;
-}
-.envelope {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #ad1457; /* Deep Pink */
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(173, 20, 87, 0.6);
-  transform-style: preserve-3d;
-}
-.flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-left: 130px solid transparent;
-  border-right: 130px solid transparent;
-  border-top: 90px solid #d81b60;
-  transform-origin: top;
-  transition: transform 0.6s ease-in-out, z-index 0s 0.3s;
-  z-index: 4;
-}
-.pocket {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-left: 130px solid transparent;
-  border-right: 130px solid transparent;
-  border-bottom: 90px solid #c2185b;
-  z-index: 3;
-}
-.pocket-left {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-top: 80px solid transparent;
-  border-bottom: 80px solid transparent;
-  border-left: 130px solid #e91e63;
-  z-index: 3;
-}
-.pocket-right {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 0;
-  height: 0;
-  border-top: 80px solid transparent;
-  border-bottom: 80px solid transparent;
-  border-right: 130px solid #e91e63;
-  z-index: 3;
-}
-.envelope-badge {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 45px;
-  height: 45px;
-  background: radial-gradient(circle, #FFD700, #caa400);
-  border-radius: 50%;
-  z-index: 5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 15px rgba(255,215,0,0.8);
-  font-size: 24px;
-  transition: 0.3s;
-  border: 2px solid #fff;
-}
-.letter {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
-  background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
-  border-radius: 5px;
-  z-index: 2;
-  transition: transform 0.8s ease-in-out 0.4s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px dashed #FFD700;
-  box-shadow: inset 0 0 10px rgba(255,215,0,0.2);
-}
-.salami-amount {
-  font-size: 32px;
-  font-weight: bold;
-  color: #ad1457;
-  text-align: center;
-}
-.salami-amount span {
-  font-size: 16px;
-  color: #666;
-  display: block;
-  margin-top: 5px;
-  font-weight: normal;
-}
-
-/* OPEN ANIMATION FOR ENVELOPE */
-.envelope-wrapper.open .flap {
-  transform: rotateX(180deg);
-  z-index: 1;
-  transition: transform 0.6s ease-in-out, z-index 0s 0.3s;
-}
-.envelope-wrapper.open .letter {
-  transform: translateY(-80px);
-  z-index: 6;
-}
-.envelope-wrapper.open .envelope-badge {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0);
-}
-
 
 /* FINAL MODERN & CINEMATIC BACKGROUND */
 #finalFull{
@@ -367,7 +227,6 @@ transition: opacity 2.5s ease-in-out;
 }
 #finalFull.show { opacity: 1; }
 
-/* Mystic Aura Behind Text */
 #finalFull::before {
 content: '';
 position: absolute;
@@ -384,7 +243,7 @@ z-index: 1;
 100% { transform: scale(1.6); opacity: 1; }
 }
 
-/* 🌙 BIG CRESCENT MOON IN FINAL SCREEN */
+/* 🌙 BIG CRESCENT MOON */
 .moon {
 width: 90px;
 height: 90px;
@@ -424,22 +283,20 @@ animation:floatUp linear infinite, sway ease-in-out infinite alternate;
 
 /* 💎 HIGHLY PROFESSIONAL TEXT REVEAL */
 .finalText{
-font-size:42px;
+font-size:35px;
 font-weight:700;
 text-align:center;
 z-index:2;
-letter-spacing: 2.5px;
+letter-spacing: 2px;
 line-height: 1.4;
-margin-top: 30px;
+margin-top: 20px;
 
 background:linear-gradient(to right, #bf953f, #fff, #b38728, #fbf5b7, #aa771c);
 background-size:200% auto;
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 
-animation:
-cinematicReveal 4s cubic-bezier(0.2, 1, 0.2, 1) forwards,
-premiumGradient 6s linear infinite;
+animation: cinematicReveal 4s cubic-bezier(0.2, 1, 0.2, 1) forwards, premiumGradient 6s linear infinite;
 filter: drop-shadow(0px 8px 20px rgba(255, 215, 0, 0.5));
 }
 
@@ -449,10 +306,34 @@ filter: drop-shadow(0px 8px 20px rgba(255, 215, 0, 0.5));
 100% { opacity: 1; transform: scale(1) translateY(0) rotateX(0deg); filter: blur(0); }
 }
 
-/* 📱 WHATSAPP SHARE BUTTON + Ripple */
+/* 🎁 RANDOM SALAMI BOX STYLES */
+.salami-box {
+margin-top: 20px;
+padding: 15px 30px;
+border: 2px dashed #FFD700;
+border-radius: 20px;
+background: rgba(255, 215, 0, 0.1);
+font-size: 26px;
+font-weight: bold;
+color: #FFD700;
+text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+z-index: 10;
+opacity: 0;
+transform: scale(0.5);
+animation: popSalami 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 2.5s, glowSalami 2s infinite alternate 3.5s;
+}
+@keyframes popSalami {
+to { opacity: 1; transform: scale(1); }
+}
+@keyframes glowSalami {
+from { box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
+to { box-shadow: 0 0 25px rgba(255, 215, 0, 0.8), inset 0 0 15px rgba(255, 215, 0, 0.4); }
+}
+
+/* 📱 WHATSAPP SHARE BUTTON */
 .wa-wrapper {
 position: relative;
-margin-top: 45px;
+margin-top: 40px;
 z-index: 10;
 opacity: 0;
 transform: translateY(30px);
@@ -507,6 +388,13 @@ z-index: 5;
 
 <body>
 
+<audio id="clickSound" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3"></audio>
+<audio id="swooshSound" src="https://assets.mixkit.co/active_storage/sfx/3005/3005-preview.mp3"></audio>
+<audio id="magicSound" src="https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3"></audio>
+<audio id="bgMusic" loop>
+<source src="https://raw.githubusercontent.com/nafis1630/Eid-Gift-By-Nafis-Fuad-/main/Islamicsound.mp3" type="audio/mp3">
+</audio>
+
 <div class="phone">
 <div class="screen" id="mainScreen">
 
@@ -518,29 +406,12 @@ z-index: 5;
 
 <div id="step1" class="center hidden">
 <h3 id="msg1" class="glow"></h3>
-<button onclick="next(2)" id="btn1" style="display:none;">👉 এগিয়ে যাও</button>
+<button onclick="next(2)" id="btn1" style="display:none;">👉 এগিয়ে যাও</button>
 </div>
 
 <div id="step2" class="center hidden">
 <h3 id="msg2" class="glow"></h3>
-<button onclick="nextFinal()" id="btn2" style="display:none;">🎁 শেষ উপহার</button>
-</div>
-
-<div id="stepEnvelope" class="center hidden">
-  <h3 class="glow" style="margin-bottom: 25px;">তোমার সালামি! 🎁</h3>
-  <div class="envelope-wrapper" onclick="openEnvelope()">
-    <div class="envelope">
-      <div class="letter">
-        <div class="salami-amount">৳ ৫০০<br><span>ঈদের সালামি</span></div>
-      </div>
-      <div class="flap"></div>
-      <div class="pocket"></div>
-      <div class="pocket-left"></div>
-      <div class="pocket-right"></div>
-      <div class="envelope-badge">🌙</div>
-    </div>
-  </div>
-  <p style="margin-top:25px; font-size: 15px; color: rgba(255,255,255,0.8); animation: pulseBtn 2s infinite;">খামটি খুলতে ট্যাপ করো</p>
+<button onclick="nextFinal()" id="btn2" style="display:none;">🎁 শেষ উপহার খুলুন</button>
 </div>
 
 <div class="visualizer" id="eqBars">
@@ -564,6 +435,8 @@ z-index: 5;
 <div class="moon"></div>
 <h1 class="finalText"><br> তোমাকে পবিত্র ঈদুল ফিতরের শুভেচ্ছা 🕌</h1>
 
+<div id="salamiDisplay" class="salami-box"></div>
+
 <div class="wa-wrapper">
   <a id="waShare" href="#" class="wa-btn" target="_blank">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
@@ -574,65 +447,53 @@ z-index: 5;
 </div>
 </div>
 
-<audio id="bgMusic" loop>
-<source src="https://raw.githubusercontent.com/nafis1630/Eid-Gift-By-Nafis-Fuad-/main/Islamicsound.mp3" type="audio/mp3">
-</audio>
 
 <script>
 
-/* 🌙 GENERATE EID VIBE BACKGROUND (Stars, Moons, Lanterns) */
+// Sound Play Functions
+function playSound(id) {
+    let audio = document.getElementById(id);
+    audio.currentTime = 0;
+    audio.play().catch(()=>{});
+}
+
+/* 🌙 GENERATE EID VIBE BACKGROUND */
 function createEidEnvironment(containerId, count) {
   const icons = ['✨', '🌙', '🌟', '🏮'];
   const container = document.getElementById(containerId);
-  
   for(let i=0; i<count; i++){
     let icon = document.createElement("div");
     icon.className = "eid-bg-icon";
     icon.innerHTML = icons[Math.floor(Math.random() * icons.length)];
-    
-    // Random sizes and positions
-    let size = Math.random() * 10 + 12; // 12px to 22px
+    let size = Math.random() * 10 + 12; 
     icon.style.fontSize = size + "px";
     icon.style.left = Math.random() * 100 + "%";
-    
-    // Random animations
     icon.style.animationDuration = (8 + Math.random() * 10) + "s, " + (3 + Math.random() * 4) + "s"; 
     icon.style.animationDelay = (Math.random() * 5) + "s";
-    
     container.appendChild(icon);
   }
 }
 
-// Generate immediately on load inside the phone screen
 window.onload = function() {
   createEidEnvironment("mainScreen", 15);
 };
 
 /* 🎵 MUSIC SYSTEM */
 let musicStarted = false;
-
 function startMusic(){
 let music = document.getElementById("bgMusic");
 let eqBars = document.getElementById("eqBars");
-
 if(!musicStarted){
-music.volume = 0;
-
-music.play().then(()=>{
-musicStarted = true;
-eqBars.classList.add("active"); // Show New Wave Visualizer
-
-let vol = 0;
-let fade = setInterval(()=>{
-if(vol < 0.5){
-vol += 0.02;
-music.volume = vol;
-}else{
-clearInterval(fade);
-}
-},100);
-
-}).catch(()=>{});
+    music.volume = 0;
+    music.play().then(()=>{
+    musicStarted = true;
+    eqBars.classList.add("active");
+    let vol = 0;
+    let fade = setInterval(()=>{
+        if(vol < 0.5){ vol += 0.02; music.volume = vol; }
+        else{ clearInterval(fade); }
+    },100);
+    }).catch(()=>{});
 }
 }
 
@@ -641,16 +502,11 @@ function createParticles(){
 for(let i=0; i<80; i++){ 
 let p=document.createElement("div");
 p.className="particle";
-
 let size = Math.random() * 3 + 1;
-p.style.width = size + "px";
-p.style.height = size + "px";
-
+p.style.width = size + "px"; p.style.height = size + "px";
 p.style.left = Math.random() * 100 + "%";
-
 p.style.animationDuration = (4 + Math.random() * 6) + "s, " + (2 + Math.random() * 3) + "s"; 
 p.style.animationDelay = (Math.random() * 3) + "s";
-
 document.getElementById("finalFull").appendChild(p);
 }
 }
@@ -660,16 +516,13 @@ function typeText(el, text, btnId, speed=35){
 el.innerHTML="";
 let i=0;
 document.getElementById(btnId).style.display = "none"; 
-
 function typing(){
 if(i<text.length){
-el.innerHTML += text.charAt(i);
-i++;
-setTimeout(typing,speed);
+    el.innerHTML += text.charAt(i); i++; setTimeout(typing,speed);
 } else {
-let btn = document.getElementById(btnId);
-btn.style.display = "inline-block";
-btn.style.animation = "waSlideUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, pulseBtn 2s infinite 0.6s";
+    let btn = document.getElementById(btnId);
+    btn.style.display = "inline-block";
+    btn.style.animation = "waSlideUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, pulseBtn 2s infinite 0.6s";
 }
 }
 typing();
@@ -678,82 +531,96 @@ typing();
 /* start */
 function start(){
 let name=document.getElementById("name").value.trim();
-
 if(!name){
-let box=document.getElementById("step0");
-box.classList.add("shake");
-setTimeout(()=>box.classList.remove("shake"),500);
-return;
+    let box=document.getElementById("step0");
+    box.classList.add("shake");
+    setTimeout(()=>box.classList.remove("shake"),500);
+    return;
 }
-
+playSound('clickSound'); 
 startMusic();
-
 step0.classList.add("hidden");
 step1.classList.remove("hidden");
-
 typeText(msg1, `${name}, এই পবিত্র ঈদের আলো তোমার জীবনে বয়ে আনুক অফুরন্ত সুখ, শান্তি আর ভালোবাসা ✨`, 'btn1');
 }
 
 /* next */
 function next(step){
+playSound('clickSound'); 
 document.querySelectorAll(".center").forEach(e=>e.classList.add("hidden"));
 document.getElementById("step"+step).classList.remove("hidden");
-
 if(step===2){
-typeText(msg2, `এই পবিত্র দিনে আল্লাহ তোমার সব দোয়া কবুল করুন,
-তোমার জীবন ভরে উঠুক রহমতে।
-সব সময় হাসিখুশি থাকো।এই ঈদে আল্লাহ তোমার পরিবারকে সুস্থতা, শান্তি আর ভালোবাসায় ভরে দিন।
-তোমাদের সবাইকে একসাথে হাসিখুশি রাখুন। ঈদ মোবারক।🌙💫`, 'btn2');
+typeText(msg2, `এই পবিত্র দিনে আল্লাহ তোমার সব দোয়া কবুল করুন, তোমার জীবন ভরে উঠুক রহমতে। সব সময় হাসিখুশি থাকো।এই ঈদে আল্লাহ তোমার পরিবারকে সুস্থতা, শান্তি আর ভালোবাসায় ভরে দিন। তোমাদের সবাইকে একসাথে হাসিখুশি রাখুন। ঈদ মোবারক।🌙💫`, 'btn2');
 }
 }
 
-/* 💌 show envelope */
+/* final update - With 2.5s Delay for "Opening" effect */
 function nextFinal(){
-  document.querySelectorAll(".center").forEach(e=>e.classList.add("hidden"));
-  document.getElementById("stepEnvelope").classList.remove("hidden");
-}
+// ১. প্রথমে শুধু খাম খোলার (swoosh) সাউন্ড হবে
+playSound('swooshSound'); 
 
-/* 💌 open envelope & wait 2.5s */
-let envelopeOpened = false;
-function openEnvelope(){
-  if(envelopeOpened) return;
-  envelopeOpened = true;
-  document.querySelector(".envelope-wrapper").classList.add("open");
-  
-  // আড়াই সেকেন্ড পর অটোমেটিক ফাইনাল পেইজে যাবে
-  setTimeout(() => {
-    showFinalScreen();
-  }, 2500); 
-}
+// ২. খাম খোলার ফিল দেওয়ার জন্য ফোনটা হালকা জুম হয়ে মিলিয়ে যাবে
+let phoneDiv = document.querySelector('.phone');
+phoneDiv.style.transition = "all 2s ease-in-out";
+phoneDiv.style.transform = "scale(1.2) translateY(-20px)";
+phoneDiv.style.opacity = "0";
 
-/* final update */
-function showFinalScreen(){
-let name = document.getElementById("name").value.trim();
-let finalScreen = document.getElementById("finalFull");
-finalScreen.style.display = "flex";
-
-// Move Visualizer to the Final Screen to keep it visible
-let eqBars = document.getElementById("eqBars");
-finalScreen.appendChild(eqBars);
-eqBars.style.bottom = "25px";
-eqBars.style.zIndex = "100";
-
-// Also inject Eid Vibe Elements to Final Screen
-createEidEnvironment("finalFull", 25);
-
+// ৩. ২.৫ সেকেন্ড অপেক্ষা করার পর ফাইনাল ম্যাজিক অ্যানিমেশন শুরু হবে
 setTimeout(() => {
-    finalScreen.classList.add("show");
-}, 50);
+    phoneDiv.style.display = "none"; // ফোন পুরোপুরি সরিয়ে দেওয়া হলো
+    
+    playSound('magicSound'); // ম্যাজিক সাউন্ড বাজবে
 
-createParticles();
+    let name = document.getElementById("name").value.trim();
+    let finalScreen = document.getElementById("finalFull");
+    finalScreen.style.display = "flex";
 
-// Setup WhatsApp Share
-let currentUrl = window.location.href; 
-let message = `${name} তোমাকে পবিত্র ঈদুল ফিতরের শুভেচ্ছা পাঠিয়েছে! 🌙✨\n\nউপহারটি দেখতে লিংকে ক্লিক করো: ${currentUrl}`;
-document.getElementById("waShare").href = `whatsapp://send?text=${encodeURIComponent(message)}`;
+    let eqBars = document.getElementById("eqBars");
+    finalScreen.appendChild(eqBars);
+    eqBars.style.bottom = "25px";
+    eqBars.style.zIndex = "100";
+
+    createEidEnvironment("finalFull", 25);
+
+    // 🎁 Random Salami Logic
+    const salamiAmounts = [100, 200, 500, 1000, 2000];
+    const receivedSalami = salamiAmounts[Math.floor(Math.random() * salamiAmounts.length)];
+    document.getElementById("salamiDisplay").innerHTML = `💌🎊 তোমার ঈদ সেলামি: ৳${receivedSalami} 🎉💌`;
+
+    setTimeout(() => { finalScreen.classList.add("show"); }, 50);
+
+    createParticles();
+
+    // 🎉 FIREWORKS / CONFETTI ANIMATION
+    var duration = 4 * 1000;
+    var animationEnd = Date.now() + duration;
+    var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 10000 };
+    function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+
+    var interval = setInterval(function() {
+        var timeLeft = animationEnd - Date.now();
+        if (timeLeft <= 0) { return clearInterval(interval); }
+        var particleCount = 50 * (timeLeft / duration);
+        confetti(Object.assign({}, defaults, { particleCount,
+            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+            colors: ['#FFD700', '#caa400', '#ffffff']
+        }));
+        confetti(Object.assign({}, defaults, { particleCount,
+            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+            colors: ['#FFD700', '#caa400', '#ffffff']
+        }));
+    }, 250);
+
+    // Setup WhatsApp Share
+    let currentUrl = window.location.href; 
+    let message = `${name} তোমাকে পবিত্র ঈদুল ফিতরের শুভেচ্ছা পাঠিয়েছে! 🌙✨\nসাথে পাঠিয়েছে ৳${receivedSalami} ঈদ সেলামি! 🎁\n\nউপহারটি দেখতে লিংকে ক্লিক করো: ${currentUrl}`;
+    document.getElementById("waShare").href = `whatsapp://send?text=${encodeURIComponent(message)}`;
+
+}, 2500); // ঠিক আড়াই (2.5) সেকেন্ড পর এই কোডগুলো রান করবে
 }
 
 </script>
 
 </body>
-</html>
+  </html>
+    
