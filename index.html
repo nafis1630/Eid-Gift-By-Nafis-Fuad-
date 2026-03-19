@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> Eid Gift By Nafis </title>
+<title>EID GIFT BY NAFIS FUAD</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -19,9 +19,10 @@ align-items:center;
 height:100vh;
 overflow:hidden;
 color:white;
+perspective: 1000px; 
 }
 
-/* PHONE */
+/* PHONE + Floating Animation */
 .phone{
 width:360px;
 height:720px;
@@ -29,6 +30,13 @@ border-radius:40px;
 padding:10px;
 background:#000;
 box-shadow:0 0 80px rgba(255,215,0,0.5);
+animation: floatPhone 6s ease-in-out infinite;
+position: relative;
+}
+
+@keyframes floatPhone {
+0%, 100% { transform: translateY(0px) rotateX(0deg); box-shadow:0 0 80px rgba(255,215,0,0.5); }
+50% { transform: translateY(-15px) rotateX(2deg); box-shadow:0 20px 100px rgba(255,215,0,0.7); }
 }
 
 /* CALLIGRAPHY BG */
@@ -40,46 +48,70 @@ position:relative;
 overflow:hidden;
 
 background:
-linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)),
+linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85)),
 url('https://images.unsplash.com/photo-1609599006353-e629aaabfeae?q=80&w=1200&auto=format&fit=crop');
 
 background-size:cover;
 background-position:center;
 }
 
-/* center */
+/* 🌙 EID ENVIRONMENT BACKGROUND (Stars, Moons, Lanterns) */
+.eid-bg-icon {
+position: absolute;
+font-size: 14px;
+opacity: 0.3;
+z-index: 1;
+pointer-events: none;
+filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
+animation: floatBgElements linear infinite, spinIcon ease-in-out infinite alternate;
+}
+@keyframes floatBgElements {
+0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+20% { opacity: 0.5; }
+80% { opacity: 0.5; }
+100% { transform: translateY(-20vh) scale(1.2); opacity: 0; }
+}
+@keyframes spinIcon {
+0% { margin-left: -20px; transform: rotate(-15deg); }
+100% { margin-left: 20px; transform: rotate(15deg); }
+}
+
+/* 3D CENTER TRANSITIONS */
 .center{
 position:absolute;
 top:50%;left:50%;
-transform:translate(-50%,-50%);
+transform:translate(-50%,-50%) scale(1) rotateY(0deg);
 text-align:center;
 width:90%;
 z-index:2;
-transition:0.5s;
+transition:all 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+transform-style: preserve-3d;
 }
 .hidden{
 opacity:0;
-transform:translate(-50%,-30%) scale(0.8);
+transform:translate(-50%,-60%) scale(0.6) rotateX(-20deg) rotateY(15deg);
 pointer-events:none;
+filter: blur(8px);
 }
 
 /* TEXT */
 .glow{
-font-size:18px;
-font-weight:600;
+font-size:20px;
+font-weight:700;
 background:linear-gradient(270deg,#FFD700,#fff,#FFD700,#ffae00);
 background-size:400%;
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 animation:glowMove 6s linear infinite;
-text-shadow:0 0 20px rgba(255,215,0,0.6);
+text-shadow:0 0 25px rgba(255,215,0,0.6);
+line-height: 1.5;
 }
 @keyframes glowMove{
 0%{background-position:0%}
 100%{background-position:100%}
 }
 
-/* button */
+/* button + Pulse Animation */
 button{
 padding:12px 25px;
 border:none;
@@ -87,36 +119,236 @@ border-radius:30px;
 background:linear-gradient(45deg,#FFD700,#caa400);
 color:black;
 font-weight:bold;
-margin-top:20px;
+margin-top:25px;
 cursor:pointer;
-transition:.3s;
+transition:.4s;
+animation: pulseBtn 2s infinite;
+font-size: 15px;
 }
 button:hover{
-transform:scale(1.1);
-box-shadow:0 0 20px gold;
+transform:scale(1.1) translateY(-3px);
+box-shadow:0 10px 25px rgba(255, 215, 0, 0.9);
+}
+@keyframes pulseBtn {
+0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+70% { box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); }
+100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
 }
 
+/* Input + Focus Effect */
 input{
-padding:10px;
+padding:12px;
 border-radius:20px;
-border:none;
+border:2px solid rgba(255,215,0,0.3);
+background: rgba(0, 0, 0, 0.5);
+color: #FFD700;
 width:80%;
-margin-top:10px;
+margin-top:15px;
 text-align:center;
+transition: 0.4s;
+font-size: 16px;
+font-weight: 600;
+}
+input::placeholder { color: rgba(255,255,255,0.6); font-weight: 400; }
+input:focus {
+outline: none;
+border-color: #FFD700;
+box-shadow: 0 0 25px rgba(255, 215, 0, 0.8), inset 0 0 10px rgba(255, 215, 0, 0.3);
+transform: scale(1.08);
+background: rgba(0, 0, 0, 0.9);
 }
 
 /* SHAKE */
 .shake{animation:shake 0.5s;}
 @keyframes shake{
-0%{transform:translate(-50%,-50%)}
-20%{transform:translate(-60%,-50%)}
-40%{transform:translate(-40%,-50%)}
-60%{transform:translate(-55%,-50%)}
-80%{transform:translate(-45%,-50%)}
-100%{transform:translate(-50%,-50%)}
+0%, 100%{transform:translate(-50%,-50%)}
+20%, 60%{transform:translate(-55%,-50%)}
+40%, 80%{transform:translate(-45%,-50%)}
 }
 
-/* FINAL MODERN */
+/* 🎶 PREMIUM AUDIO WAVE VISUALIZER (NEW DYNAMIC ANIMATION) */
+.visualizer {
+position: absolute;
+bottom: 35px;
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+gap: 6px;
+align-items: center;
+height: 50px;
+z-index: 10;
+opacity: 0;
+transition: 1.5s ease-in-out;
+pointer-events: none;
+}
+.visualizer.active { opacity: 1; }
+
+.wave-bar {
+width: 5px;
+height: 12px;
+border-radius: 20px;
+background: linear-gradient(180deg, #fff 0%, #FFD700 50%, #caa400 100%);
+box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+animation: dynamicWave 1s infinite ease-in-out;
+}
+
+/* Asymmetrical & Random Delays for Realistic Equalizer Effect */
+.wb-1 { animation-delay: 0.0s; animation-duration: 0.7s; }
+.wb-2 { animation-delay: 0.2s; animation-duration: 0.9s; }
+.wb-3 { animation-delay: 0.4s; animation-duration: 0.6s; }
+.wb-4 { animation-delay: 0.1s; animation-duration: 1.1s; }
+.wb-5 { animation-delay: 0.5s; animation-duration: 0.8s; } 
+.wb-6 { animation-delay: 0.3s; animation-duration: 0.7s; }
+.wb-7 { animation-delay: 0.6s; animation-duration: 1.0s; }
+.wb-8 { animation-delay: 0.2s; animation-duration: 0.9s; }
+.wb-9 { animation-delay: 0.1s; animation-duration: 0.6s; }
+
+@keyframes dynamicWave {
+0%, 100% { 
+  transform: scaleY(0.4); 
+  opacity: 0.6; 
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+}
+50% { 
+  transform: scaleY(3.2); 
+  opacity: 1; 
+  box-shadow: 0 0 20px #FFD700, 0 0 10px #fff; 
+  background: linear-gradient(180deg, #ffffff 0%, #ffae00 50%, #caa400 100%);
+}
+}
+
+/* ------------------------------------------------ */
+/* 💌 NEW: 3D PREMIUM ISLAMIC PINK ENVELOPE STYLES  */
+/* ------------------------------------------------ */
+.envelope-wrapper {
+  position: relative;
+  width: 260px;
+  height: 160px;
+  margin: 0 auto;
+  cursor: pointer;
+  perspective: 1000px;
+  -webkit-tap-highlight-color: transparent;
+}
+.envelope {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ad1457; /* Deep Pink */
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(173, 20, 87, 0.6);
+  transform-style: preserve-3d;
+}
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 130px solid transparent;
+  border-right: 130px solid transparent;
+  border-top: 90px solid #d81b60;
+  transform-origin: top;
+  transition: transform 0.6s ease-in-out, z-index 0s 0.3s;
+  z-index: 4;
+}
+.pocket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 130px solid transparent;
+  border-right: 130px solid transparent;
+  border-bottom: 90px solid #c2185b;
+  z-index: 3;
+}
+.pocket-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 80px solid transparent;
+  border-bottom: 80px solid transparent;
+  border-left: 130px solid #e91e63;
+  z-index: 3;
+}
+.pocket-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 80px solid transparent;
+  border-bottom: 80px solid transparent;
+  border-right: 130px solid #e91e63;
+  z-index: 3;
+}
+.envelope-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 45px;
+  height: 45px;
+  background: radial-gradient(circle, #FFD700, #caa400);
+  border-radius: 50%;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(255,215,0,0.8);
+  font-size: 24px;
+  transition: 0.3s;
+  border: 2px solid #fff;
+}
+.letter {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+  border-radius: 5px;
+  z-index: 2;
+  transition: transform 0.8s ease-in-out 0.4s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #FFD700;
+  box-shadow: inset 0 0 10px rgba(255,215,0,0.2);
+}
+.salami-amount {
+  font-size: 32px;
+  font-weight: bold;
+  color: #ad1457;
+  text-align: center;
+}
+.salami-amount span {
+  font-size: 16px;
+  color: #666;
+  display: block;
+  margin-top: 5px;
+  font-weight: normal;
+}
+
+/* OPEN ANIMATION FOR ENVELOPE */
+.envelope-wrapper.open .flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+  transition: transform 0.6s ease-in-out, z-index 0s 0.3s;
+}
+.envelope-wrapper.open .letter {
+  transform: translateY(-80px);
+  z-index: 6;
+}
+.envelope-wrapper.open .envelope-badge {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+}
+
+
+/* FINAL MODERN & CINEMATIC BACKGROUND */
 #finalFull{
 position:fixed;
 top:0;
@@ -127,113 +359,147 @@ display:none;
 justify-content:center;
 align-items:center;
 flex-direction:column;
-background:radial-gradient(circle at center,#000 40%,#020202 100%);
+background:radial-gradient(circle at center,#1a1400 0%,#000000 100%);
 z-index:9999;
 overflow:hidden;
+opacity: 0;
+transition: opacity 2.5s ease-in-out;
+}
+#finalFull.show { opacity: 1; }
+
+/* Mystic Aura Behind Text */
+#finalFull::before {
+content: '';
+position: absolute;
+width: 350px;
+height: 350px;
+background: rgba(255, 215, 0, 0.12);
+border-radius: 50%;
+filter: blur(90px);
+animation: pulseAura 4s ease-in-out infinite alternate;
+z-index: 1;
+}
+@keyframes pulseAura {
+0% { transform: scale(0.8); opacity: 0.4; }
+100% { transform: scale(1.6); opacity: 1; }
 }
 
-/* ✨ PARTICLES (existing) */
+/* 🌙 BIG CRESCENT MOON IN FINAL SCREEN */
+.moon {
+width: 90px;
+height: 90px;
+border-radius: 50%;
+box-shadow: 18px 18px 0 0 #FFD700;
+position: absolute;
+top: 12%;
+opacity: 0;
+z-index: 2;
+filter: drop-shadow(0 0 20px rgba(255,215,0,0.8));
+animation: moonRise 3.5s cubic-bezier(0.2, 1, 0.2, 1) forwards 1s, floatPhone 6s ease-in-out infinite 4.5s;
+}
+@keyframes moonRise {
+0% { opacity: 0; transform: translateY(60px) scale(0.5) rotate(-30deg); }
+100% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+}
+
+/* ✨ PROFESSIONAL FIREFLY PARTICLES */
 .particle{
 position:absolute;
-width:3px;
-height:3px;
 background:#FFD700;
 border-radius:50%;
-opacity:0.6;
-animation:floatUp linear infinite;
+box-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+opacity:0;
+animation:floatUp linear infinite, sway ease-in-out infinite alternate;
 }
 @keyframes floatUp{
-from{transform:translateY(100vh);opacity:0;}
-to{transform:translateY(-10vh);opacity:1;}
+0% {transform:translateY(110vh) scale(0); opacity:0;}
+20% {opacity:0.9; transform:translateY(80vh) scale(1.2);}
+80% {opacity:0.9;}
+100% {transform:translateY(-10vh) scale(0.5); opacity:0;}
+}
+@keyframes sway {
+0% { margin-left: -35px; }
+100% { margin-left: 35px; }
 }
 
-/* 💎 PREMIUM TEXT (same) */
+/* 💎 HIGHLY PROFESSIONAL TEXT REVEAL */
 .finalText{
-font-size:32px;
+font-size:42px;
 font-weight:700;
 text-align:center;
 z-index:2;
+letter-spacing: 2.5px;
+line-height: 1.4;
+margin-top: 30px;
 
-background:linear-gradient(270deg,#FFD700,#fff,#FFD700,#ffae00,#fff);
-background-size:400%;
+background:linear-gradient(to right, #bf953f, #fff, #b38728, #fbf5b7, #aa771c);
+background-size:200% auto;
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 
 animation:
-gradientMove 6s linear infinite,
-glowPulse 2.5s ease-in-out infinite,
-fadeZoom 1.5s ease;
+cinematicReveal 4s cubic-bezier(0.2, 1, 0.2, 1) forwards,
+premiumGradient 6s linear infinite;
+filter: drop-shadow(0px 8px 20px rgba(255, 215, 0, 0.5));
 }
 
-@keyframes gradientMove{
-0%{background-position:0%}
-100%{background-position:100%}
+@keyframes cinematicReveal{
+0% { opacity: 0; transform: scale(1.8) translateY(50px) rotateX(20deg); filter: blur(25px); }
+50% { opacity: 0.6; filter: blur(8px); }
+100% { opacity: 1; transform: scale(1) translateY(0) rotateX(0deg); filter: blur(0); }
 }
 
-@keyframes glowPulse{
-0%,100%{text-shadow:0 0 10px gold,0 0 20px gold;}
-50%{text-shadow:0 0 25px gold,0 0 50px gold;}
+/* 📱 WHATSAPP SHARE BUTTON + Ripple */
+.wa-wrapper {
+position: relative;
+margin-top: 45px;
+z-index: 10;
+opacity: 0;
+transform: translateY(30px);
+animation: waSlideUp 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 3.5s;
 }
 
-@keyframes fadeZoom{
-0%{opacity:0;transform:scale(0.6);}
-100%{opacity:1;transform:scale(1);}
+.wa-btn {
+background: linear-gradient(45deg, #25D366, #128C7E);
+color: white;
+text-decoration: none;
+padding: 14px 35px;
+border-radius: 40px;
+font-weight: bold;
+font-size: 18px;
+display: inline-flex;
+align-items: center;
+gap: 12px;
+box-shadow: 0 10px 25px rgba(37, 211, 102, 0.5);
+transition: 0.4s;
+position: relative;
 }
-
-/* 🌙 MOON */
-.moon{
-position:absolute;
-top:25%;
-width:140px;
-height:140px;
-border-radius:50%;
-background:radial-gradient(circle,#fff,#ddd,#aaa);
-box-shadow:0 0 60px rgba(255,255,255,0.6);
-opacity:0;
-transform:scale(0.5);
+.wa-btn::before {
+content: '';
+position: absolute;
+top: 0; left: 0; right: 0; bottom: 0;
+border-radius: 40px;
+border: 2px solid #25D366;
+animation: waRipple 2s infinite;
 }
-
-/* ☁ CLOUD */
-.cloud{
-position:absolute;
-width:180px;
-height:60px;
-background:rgba(255,255,255,0.08);
-border-radius:50px;
-filter:blur(8px);
-animation:cloudMove 25s linear infinite;
+.wa-btn:hover {
+transform: scale(1.08) translateY(-4px);
+box-shadow: 0 15px 35px rgba(37, 211, 102, 0.7);
 }
-@keyframes cloudMove{
-from{transform:translateX(-200px);}
-to{transform:translateX(120vw);}
-}
-
-/* ✨ RAYS */
-.ray{
-position:absolute;
-width:2px;
-height:120px;
-background:linear-gradient(to top,transparent,gold);
-top:25%;
-opacity:0;
-}
-
-/* 🌟 SPARK */
-.spark{
-position:absolute;
-width:4px;
-height:4px;
-background:gold;
-border-radius:50%;
-opacity:0;
+@keyframes waSlideUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes waRipple {
+0% { transform: scale(1); opacity: 0.8; }
+100% { transform: scale(1.3) scaleY(1.4); opacity: 0; }
 }
 
 .watermark{
 position:absolute;
-bottom:10px;
-right:10px;
-font-size:10px;
-opacity:.6;
+bottom:12px;
+right:15px;
+font-size:11px;
+opacity:.5;
+letter-spacing: 1px;
+z-index: 5;
 }
 
 </style>
@@ -242,22 +508,51 @@ opacity:.6;
 <body>
 
 <div class="phone">
-<div class="screen">
+<div class="screen" id="mainScreen">
 
 <div id="step0" class="center">
 <h3 class="glow">তোমার নাম লিখো ✨</h3>
-<input id="name" placeholder="তোমার নাম...">
+<input id="name" placeholder="তোমার নাম..." autocomplete="off">
 <button onclick="start()">✨ শুরু করো</button>
 </div>
 
 <div id="step1" class="center hidden">
 <h3 id="msg1" class="glow"></h3>
-<button onclick="next(2)">👉 এগিয়ে যাও</button>
+<button onclick="next(2)" id="btn1" style="display:none;">👉 এগিয়ে যাও</button>
 </div>
 
 <div id="step2" class="center hidden">
 <h3 id="msg2" class="glow"></h3>
-<button onclick="nextFinal()">🎁 শেষ উপহার</button>
+<button onclick="nextFinal()" id="btn2" style="display:none;">🎁 শেষ উপহার</button>
+</div>
+
+<div id="stepEnvelope" class="center hidden">
+  <h3 class="glow" style="margin-bottom: 25px;">তোমার সালামি! 🎁</h3>
+  <div class="envelope-wrapper" onclick="openEnvelope()">
+    <div class="envelope">
+      <div class="letter">
+        <div class="salami-amount">৳ ৫০০<br><span>ঈদের সালামি</span></div>
+      </div>
+      <div class="flap"></div>
+      <div class="pocket"></div>
+      <div class="pocket-left"></div>
+      <div class="pocket-right"></div>
+      <div class="envelope-badge">🌙</div>
+    </div>
+  </div>
+  <p style="margin-top:25px; font-size: 15px; color: rgba(255,255,255,0.8); animation: pulseBtn 2s infinite;">খামটি খুলতে ট্যাপ করো</p>
+</div>
+
+<div class="visualizer" id="eqBars">
+  <div class="wave-bar wb-1"></div>
+  <div class="wave-bar wb-2"></div>
+  <div class="wave-bar wb-3"></div>
+  <div class="wave-bar wb-4"></div>
+  <div class="wave-bar wb-5"></div>
+  <div class="wave-bar wb-6"></div>
+  <div class="wave-bar wb-7"></div>
+  <div class="wave-bar wb-8"></div>
+  <div class="wave-bar wb-9"></div>
 </div>
 
 <div class="watermark">Created by MD. NAFIS FUAD</div>
@@ -265,30 +560,67 @@ opacity:.6;
 </div>
 </div>
 
-<!-- FINAL -->
 <div id="finalFull">
 <div class="moon"></div>
-<h1 class="finalText"> তোমাকে পবিত্র ঈদু-উল-ফিতরের শুভেচ্ছা 🕌 </h1>
+<h1 class="finalText"><br> তোমাকে পবিত্র ঈদুল ফিতরের শুভেচ্ছা 🕌</h1>
+
+<div class="wa-wrapper">
+  <a id="waShare" href="#" class="wa-btn" target="_blank">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+    </svg>
+    Share on WhatsApp
+  </a>
+</div>
 </div>
 
-<!-- MUSIC -->
 <audio id="bgMusic" loop>
 <source src="https://raw.githubusercontent.com/nafis1630/Eid-Gift-By-Nafis-Fuad-/main/Islamicsound.mp3" type="audio/mp3">
 </audio>
 
 <script>
 
+/* 🌙 GENERATE EID VIBE BACKGROUND (Stars, Moons, Lanterns) */
+function createEidEnvironment(containerId, count) {
+  const icons = ['✨', '🌙', '🌟', '🏮'];
+  const container = document.getElementById(containerId);
+  
+  for(let i=0; i<count; i++){
+    let icon = document.createElement("div");
+    icon.className = "eid-bg-icon";
+    icon.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+    
+    // Random sizes and positions
+    let size = Math.random() * 10 + 12; // 12px to 22px
+    icon.style.fontSize = size + "px";
+    icon.style.left = Math.random() * 100 + "%";
+    
+    // Random animations
+    icon.style.animationDuration = (8 + Math.random() * 10) + "s, " + (3 + Math.random() * 4) + "s"; 
+    icon.style.animationDelay = (Math.random() * 5) + "s";
+    
+    container.appendChild(icon);
+  }
+}
+
+// Generate immediately on load inside the phone screen
+window.onload = function() {
+  createEidEnvironment("mainScreen", 15);
+};
+
 /* 🎵 MUSIC SYSTEM */
 let musicStarted = false;
 
 function startMusic(){
 let music = document.getElementById("bgMusic");
+let eqBars = document.getElementById("eqBars");
 
 if(!musicStarted){
 music.volume = 0;
 
 music.play().then(()=>{
 musicStarted = true;
+eqBars.classList.add("active"); // Show New Wave Visualizer
 
 let vol = 0;
 let fade = setInterval(()=>{
@@ -304,26 +636,40 @@ clearInterval(fade);
 }
 }
 
-/* particles */
+/* 🌟 ADVANCED PARTICLES */
 function createParticles(){
-for(let i=0;i<60;i++){
+for(let i=0; i<80; i++){ 
 let p=document.createElement("div");
 p.className="particle";
-p.style.left=Math.random()*100+"%";
-p.style.animationDuration=(3+Math.random()*4)+"s";
+
+let size = Math.random() * 3 + 1;
+p.style.width = size + "px";
+p.style.height = size + "px";
+
+p.style.left = Math.random() * 100 + "%";
+
+p.style.animationDuration = (4 + Math.random() * 6) + "s, " + (2 + Math.random() * 3) + "s"; 
+p.style.animationDelay = (Math.random() * 3) + "s";
+
 document.getElementById("finalFull").appendChild(p);
 }
 }
 
-/* typing */
-function typeText(el, text, speed=25){
+/* typing - smooth with button reveal */
+function typeText(el, text, btnId, speed=35){
 el.innerHTML="";
 let i=0;
+document.getElementById(btnId).style.display = "none"; 
+
 function typing(){
 if(i<text.length){
 el.innerHTML += text.charAt(i);
 i++;
 setTimeout(typing,speed);
+} else {
+let btn = document.getElementById(btnId);
+btn.style.display = "inline-block";
+btn.style.animation = "waSlideUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, pulseBtn 2s infinite 0.6s";
 }
 }
 typing();
@@ -345,7 +691,7 @@ startMusic();
 step0.classList.add("hidden");
 step1.classList.remove("hidden");
 
-typeText(msg1, `${name}, এই পবিত্র ঈদের আলো তোমার জীবনে বয়ে আনুক অফুরন্ত সুখ, শান্তি আর ভালোবাসা ✨`);
+typeText(msg1, `${name}, এই পবিত্র ঈদের আলো তোমার জীবনে বয়ে আনুক অফুরন্ত সুখ, শান্তি আর ভালোবাসা ✨`, 'btn1');
 }
 
 /* next */
@@ -354,75 +700,57 @@ document.querySelectorAll(".center").forEach(e=>e.classList.add("hidden"));
 document.getElementById("step"+step).classList.remove("hidden");
 
 if(step===2){
-typeText(msg2, ` এই পবিত্র দিনে আল্লাহ তোমার সব দোয়া কবুল করুন,
+typeText(msg2, `এই পবিত্র দিনে আল্লাহ তোমার সব দোয়া কবুল করুন,
 তোমার জীবন ভরে উঠুক রহমতে।
 সব সময় হাসিখুশি থাকো।এই ঈদে আল্লাহ তোমার পরিবারকে সুস্থতা, শান্তি আর ভালোবাসায় ভরে দিন।
-তোমাদের সবাইকে একসাথে হাসিখুশি রাখুন। ঈদ মোবারক। 🌙💫`);
+তোমাদের সবাইকে একসাথে হাসিখুশি রাখুন। ঈদ মোবারক।🌙💫`, 'btn2');
 }
 }
 
-/* 🔥 UPDATED FINAL ONLY */
+/* 💌 show envelope */
 function nextFinal(){
-let final = document.getElementById("finalFull");
-final.style.display="flex";
-
-/* 🌙 moon */
-let moon = document.querySelector(".moon");
-setTimeout(()=>{
-moon.style.transition="all 1.5s ease";
-moon.style.opacity=1;
-moon.style.transform="scale(1)";
-},200);
-
-/* ☁ clouds */
-for(let i=0;i<3;i++){
-let c=document.createElement("div");
-c.className="cloud";
-c.style.top=(20+i*15)+"%";
-final.appendChild(c);
+  document.querySelectorAll(".center").forEach(e=>e.classList.add("hidden"));
+  document.getElementById("stepEnvelope").classList.remove("hidden");
 }
 
-/* ✨ rays */
-for(let i=0;i<8;i++){
-let ray=document.createElement("div");
-ray.className="ray";
-ray.style.left="50%";
-ray.style.transform=`rotate(${i*45}deg)`;
-final.appendChild(ray);
-
-setTimeout(()=>{
-ray.style.opacity=1;
-ray.style.transition="opacity 1s ease";
-},1000);
+/* 💌 open envelope & wait 2.5s */
+let envelopeOpened = false;
+function openEnvelope(){
+  if(envelopeOpened) return;
+  envelopeOpened = true;
+  document.querySelector(".envelope-wrapper").classList.add("open");
+  
+  // আড়াই সেকেন্ড পর অটোমেটিক ফাইনাল পেইজে যাবে
+  setTimeout(() => {
+    showFinalScreen();
+  }, 2500); 
 }
 
-/* 💎 text smoother */
-let text=document.querySelector(".finalText");
-text.style.transform="translateY(40px)";
-text.style.opacity="0";
+/* final update */
+function showFinalScreen(){
+let name = document.getElementById("name").value.trim();
+let finalScreen = document.getElementById("finalFull");
+finalScreen.style.display = "flex";
 
-setTimeout(()=>{
-text.style.transition="all 1.2s ease";
-text.style.opacity=1;
-text.style.transform="translateY(0)";
-},1400);
+// Move Visualizer to the Final Screen to keep it visible
+let eqBars = document.getElementById("eqBars");
+finalScreen.appendChild(eqBars);
+eqBars.style.bottom = "25px";
+eqBars.style.zIndex = "100";
 
-/* 🌟 spark burst */
-for(let i=0;i<40;i++){
-let s=document.createElement("div");
-s.className="spark";
-s.style.left=Math.random()*100+"%";
-s.style.top=Math.random()*100+"%";
-final.appendChild(s);
+// Also inject Eid Vibe Elements to Final Screen
+createEidEnvironment("finalFull", 25);
 
-setTimeout(()=>{
-s.style.opacity=1;
-s.style.transform="scale(1.5)";
-},1500);
-}
+setTimeout(() => {
+    finalScreen.classList.add("show");
+}, 50);
 
-/* existing particles */
 createParticles();
+
+// Setup WhatsApp Share
+let currentUrl = window.location.href; 
+let message = `${name} তোমাকে পবিত্র ঈদুল ফিতরের শুভেচ্ছা পাঠিয়েছে! 🌙✨\n\nউপহারটি দেখতে লিংকে ক্লিক করো: ${currentUrl}`;
+document.getElementById("waShare").href = `whatsapp://send?text=${encodeURIComponent(message)}`;
 }
 
 </script>
